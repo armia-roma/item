@@ -1,0 +1,121 @@
+<div *ngIf="alert?.display" class="alert alert-primary d-flex align-items-center" role="alert">
+    <div>
+      {{alert.message}}
+    </div>
+</div>
+<form class="form" [formGroup]="form" (ngSubmit)="submit()">
+    <!-- Name -->
+    <div class="form-group mb-2">
+        <label for="item-name">{{"Name"}}</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="item-name" 
+            placeholder="Enter item name" 
+            formControlName="name"
+            >
+        <div class="text-danger" *ngIf="name?.invalid && 
+                (form.controls['name'].dirty || form.controls['name'].touched)">
+            <div *ngIf="form.controls['name'].errors?.['required']">Name is required.</div>
+        </div>
+        <div class="text-danger" *ngIf="form.get('name')?.hasError('serverError')">
+            {{ form.get('name')?.getError('serverError') }}
+        </div>
+    </div>
+    <!-- Part Number -->
+    <div class="form-group mb-2">
+        <label for="part-number">Part Number</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="part-number" 
+            placeholder="Part Number" 
+            formControlName="part_number">
+            <div *ngIf="form.get('part_number')?.invalid 
+                &&( form.get('part_number')?.dirty || form.get('part_number')?.touched )">
+                <div class="text-danger" *ngIf="form.controls['part_number']?.hasError('required')">
+                    Part Number is required
+                </div>
+            </div>
+        <div class="text-danger" *ngIf="form.get('part_number')?.hasError('serverError')">
+            {{ form.get('part_number')?.getError('serverError') }}
+        </div>
+    </div>
+    <!-- Location -->
+    <div class="form-group mb-2">
+        <label for="location">{{"Location" | translate}}</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="location" 
+            placeholder="{{'Enter item location' | translate}}" 
+            formControlName="location"
+        >
+        <div *ngIf="form.get('location')?.invalid">
+            <div class="text-danger" 
+                *ngIf="form.get('location')?.hasError('required') 
+                    && (form.get('location')?.dirty || form.get('location')?.touched)">
+                Location is required
+            </div>
+        </div>
+        <div class="text-danger" *ngIf="form.get('location')?.hasError('serverError')">
+            {{ form.get('location')?.getError('serverError') }}
+        </div>
+    </div>
+    <div class="row">
+        <!-- price -->
+        <div class="form-group col-6 mb-2">
+            <label for="item-price">{{"Item Price"| translate}}</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="item-price" 
+                placeholder="Enter item price" 
+                pattern="[0-9]*"
+                formControlName="price"
+                (keypress)="keyPress($event)"
+                >
+            <div
+                class="text-danger" 
+                *ngIf="price?.hasError('required') && 
+                    (form.controls['price'].dirty || form.controls['price'].touched)">
+                <div *ngIf="form.controls['price'].errors?.['required']">Price is required.</div>
+                <div *ngIf="price?.errors?.['min']">Price must be greater than 0.</div>
+                <!-- <div *ngIf="form.controls['price']?.errors?.['pattern']">Price format is invalid.</div> -->
+            </div>
+            <div class="text-danger" *ngIf="form.get('price')?.hasError('serverError')">
+                {{ form.get('price')?.getError('serverError') }}
+            </div>
+        </div>
+        <!-- Manufacturer -->
+        <div class="form-group col-6 mb-2">
+            <label for="manufacturer">Manufacturer</label>
+            <select name="manufacturer" id="manufacturer" class="form-control" formControlName="manufacturer_id">
+                <option option [value]=null>Select manufacturer</option>
+                <option 
+                    *ngFor="let method of manufacturers" 
+                    [value]="method.id"
+                    > 
+                    {{ method.name }}
+                </option>
+            </select>
+            <div class="text-danger" *ngIf="form.get('manufacturer_id')?.hasError('serverError')">
+                {{ form.get('manufacturer_id')?.getError('serverError') }}
+            </div>
+        </div>
+    </div>
+    <!-- Description -->
+    <div class="form-group mb-2">
+        <label for="item-description">Description</label>
+        <textarea class="form-control" id="item-description" rows="3" placeholder="Enter item description" formControlName="description"></textarea>
+    </div>
+    <!-- Submit -->
+    <div class="row">
+        <div class="d-grid gap-2 col-md-3">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+        <div *ngIf="id" class="d-grid gap-2 col-md-3">
+            <button type="button" class="btn btn-danger" (click)="delete()">Delete</button>
+        </div>
+    </div>
+</form> 

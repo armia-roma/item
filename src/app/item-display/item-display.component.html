@@ -1,0 +1,64 @@
+<!-- <div class="card">
+    <div *ngIf="item" class="card-body">
+      <h5 class="card-title">{{item.name}}</h5>
+      <p class="card-text"> Part Number: {{item.part_number}}</p>
+      <p class="card-text"> Location: {{item.location}}</p>
+      <p class="card-text"> Price: {{item.price}}</p>
+      <a href="#" class="btn btn-primary">View Details</a>
+    </div>
+  </div>
+  <div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Price</th>
+          <th>Location</th>
+          <th>Manufacturer</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.location }}</td>
+          <td>{{ item.manufacturer_id }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div> -->
+
+<div class="container">
+  <div class="row" *ngIf="item">
+		<div class="col-md-6">
+			<label>Name:</label>
+			<p>{{ item.name }}</p>
+		</div>
+		<div class="col-md-6">
+			<label>Price:</label>
+			<p>{{ item.price | currency}}</p>
+		</div>
+		<div class="col-md-6">
+			<label>Location:</label>
+			<p>{{ item.location }}</p>
+		</div>
+		<div class="col-md-6">
+			<label>Manufacturer:</label>
+			<p>{{ item.manufacturer_id }}</p>
+		</div>
+		<div class="col-md-6">
+			<label>Category:</label>
+			<p>{{ item.location }}</p>
+		</div>
+	</div>
+	<!-- <div class="row">
+		<div class="col-md-2"> -->
+			<div class="d-grid gap-2">
+				<button  type="button" class="btn btn-primary"> Edit</button>
+			<!-- </div>
+		</div> -->
+		
+	</div>
+</div>
+

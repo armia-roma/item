@@ -13,14 +13,12 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import { CourseFormComponent } from './course-form/course-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { TopicFormComponent } from './topic-form/topic-form.component';
-import { ChangePasswordFormComponent } from './change-password-form/change-password-form.component';
 import { PostsComponent } from './posts/posts.component';
 import { AppErrorHandler } from './common/app-handler-error';
 import { FollowerComponent } from './follower/follower.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { GithubProfileComponent } from './github-profile/github-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { ItemCreateFormComponent } from './item-create-form/item-create-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { RouterModule } from '@angular/router';
 import { NgxTranslateModule } from './translate/translate.module';
@@ -28,6 +26,11 @@ import { NgxTranslateModule } from './translate/translate.module';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ToastComponent } from './toast/toast.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CurrencyPipe } from '@angular/common';
+import { ItemDisplayComponent } from './item-display/item-display.component';
+import { ItemListComponent } from './item-list/item-list.component';
+import { ItemFormComponent } from './item-form/item-form.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,14 +43,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CourseFormComponent,
     LoginFormComponent,
     TopicFormComponent,
-    ChangePasswordFormComponent,
     PostsComponent,
     FollowerComponent,
     NavbarComponent,
     GithubProfileComponent,
     NotFoundComponent,
-    ItemCreateFormComponent,
-    ToastComponent
+    ToastComponent,
+    ItemDisplayComponent,
+    ItemListComponent,
+    ItemFormComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     
   ],
   providers: [
-    { provide: ErrorHandler, useClass: AppErrorHandler}
+    { provide: ErrorHandler, useClass: AppErrorHandler},
+    CurrencyPipe
   ],
   bootstrap: [AppComponent]
 })

@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'try-bootstrap';
+  tweet = {
+    body: "...",
+    likesCount: 10,
+    isLiked: true
+  }
 }
